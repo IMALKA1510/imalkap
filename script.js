@@ -85,25 +85,35 @@ document.querySelectorAll('.project-card').forEach((card, index) => {
     observer.observe(card);
 });
 
-// Contact Form Handling
+// Contact Form Handling - Web3Forms will handle the submission
 const contactForm = document.querySelector('.contact-form');
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(contactForm);
-    const name = e.target[0].value;
-    const email = e.target[1].value;
-    const message = e.target[2].value;
-    
-    // Simple validation
-    if (name && email && message) {
-        alert('Thank you for your message! I will get back to you soon.');
-        contactForm.reset();
-    } else {
-        alert('Please fill in all fields.');
-    }
-});
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(contactForm);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+        
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            alert('Thank you for your message! I will get back to you soon.');
+            contactForm.reset();
+        } else {
+            alert('Something went wrong. Please try again.');
+        }
+    });
+}
 
 // Add typing effect to hero text
 const heroTitle = document.querySelector('.hero h1');
