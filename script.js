@@ -48,9 +48,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+        navbar.style.boxShadow = '0 4px 20px rgba(99, 102, 241, 0.15)';
+        navbar.style.background = 'rgba(255, 255, 255, 1)';
     } else {
-        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
     }
 });
 
@@ -85,34 +87,11 @@ document.querySelectorAll('.project-card').forEach((card, index) => {
     observer.observe(card);
 });
 
-// Contact Form Handling - Web3Forms will handle the submission
+// Contact Form Handling - Let Web3Forms handle submission naturally
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(contactForm);
-        const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
-        
-        const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: json
-        });
-        
-        const result = await response.json();
-        
-        if (result.success) {
-            alert('Thank you for your message! I will get back to you soon.');
-            contactForm.reset();
-        } else {
-            alert('Something went wrong. Please try again.');
-        }
-    });
+    // Remove the submit event listener to allow natural form submission
+    // Web3Forms will handle everything
 }
 
 // Add typing effect to hero text
