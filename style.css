@@ -188,6 +188,7 @@ button:focus-visible {
     padding-top: 80px;
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
 .hero::before {
@@ -200,12 +201,13 @@ button:focus-visible {
     background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.2) 0%, transparent 50%);
     pointer-events: none;
+    z-index: 0;
 }
 
 .hero-content {
     text-align: center;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .hero h1 {
@@ -254,6 +256,9 @@ button:focus-visible {
 /* Sections */
 section {
     padding: 80px 0;
+    position: relative;
+    z-index: 10;
+    background: inherit;
 }
 
 .section-title {
@@ -278,6 +283,8 @@ section {
 /* About Section */
 .about {
     background: linear-gradient(180deg, var(--light-bg) 0%, #ffffff 100%);
+    position: relative;
+    z-index: 10;
 }
 
 .about-content {
