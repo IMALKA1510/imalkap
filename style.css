@@ -163,6 +163,15 @@ button:focus-visible {
     width: 100%;
 }
 
+.nav-links a.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.nav-links a.active::after {
+    width: 100%;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -412,6 +421,49 @@ section {
     color: var(--light-text);
     font-size: 0.95rem;
     line-height: 1.6;
+}
+
+/* Projects Hero Section */
+.projects-hero {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    color: white;
+    padding-top: 100px;
+    padding-bottom: 60px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.projects-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(236, 72, 153, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.projects-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    font-weight: 700;
+}
+
+.projects-hero p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
 }
 
 /* Projects Section */
@@ -765,6 +817,20 @@ section {
     .hero p {
         font-size: 1.2rem;
     }
+    
+    .projects-hero {
+        min-height: 40vh;
+        padding-top: 80px;
+        padding-bottom: 40px;
+    }
+    
+    .projects-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .projects-hero p {
+        font-size: 1.1rem;
+    }
 
     .contact-content {
         grid-template-columns: 1fr;
@@ -792,6 +858,14 @@ section {
 @media (max-width: 480px) {
     .hero h1 {
         font-size: 1.8rem;
+    }
+    
+    .projects-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .projects-hero p {
+        font-size: 1rem;
     }
 
     .skills-grid,
